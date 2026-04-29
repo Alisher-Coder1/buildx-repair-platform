@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buildx Roadmap to MVP and Production</title>
+  <style>
+body { font-family: Inter, Arial, sans-serif; margin: 0; background: #f6f7f9; color: #1f2937; line-height: 1.55; }
+.container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 64px; }
+.hero { background: #111827; color: white; padding: 36px; border-radius: 24px; box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+.hero h1 { margin: 0 0 10px; font-size: 34px; }
+.hero p { margin: 6px 0; color: #d1d5db; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 24px 0; }
+.meta div { background: white; padding: 16px; border-radius: 16px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+.section-title { margin-top: 36px; font-size: 26px; }
+.principles { background: white; border-radius: 20px; padding: 22px; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+.timeline { display: grid; gap: 18px; margin-top: 22px; }
+.phase { background: white; border-radius: 22px; padding: 22px; box-shadow: 0 4px 14px rgba(0,0,0,.07); border-left: 7px solid #9ca3af; }
+.phase[data-status="IN_PROGRESS"] { border-left-color: #2563eb; }
+.phase[data-status="NEXT"] { border-left-color: #16a34a; }
+.phase[data-status="PARTIAL"] { border-left-color: #d97706; }
+.phase[data-status="FUTURE"] { border-left-color: #7c3aed; }
+.phase h3 { margin: 0 0 8px; font-size: 22px; }
+.badge { display: inline-block; padding: 4px 10px; border-radius: 999px; background: #e5e7eb; font-size: 12px; font-weight: 700; }
+.badge.IN_PROGRESS { background: #dbeafe; color: #1d4ed8; }
+.badge.NEXT { background: #dcfce7; color: #15803d; }
+.badge.PARTIAL { background: #fef3c7; color: #b45309; }
+.badge.FUTURE { background: #ede9fe; color: #6d28d9; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; margin-top: 14px; }
+.card { background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 16px; padding: 16px; }
+.card h4 { margin: 0 0 8px; }
+ul { padding-left: 20px; }
+code, pre { background: #111827; color: #e5e7eb; border-radius: 12px; }
+pre { padding: 16px; overflow-x: auto; }
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; background: white; border-radius: 18px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,.06); }
+th, td { padding: 12px 14px; border-bottom: 1px solid #e5e7eb; text-align: left; vertical-align: top; }
+th { background: #111827; color: white; }
+.footer { margin-top: 36px; color: #6b7280; font-size: 14px; }
+</style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>Buildx Repair Platform — Roadmap to MVP and Production</h1>
+      <p><strong>Version:</strong> v0.1 · <strong>Status:</strong> DRAFT · <strong>Created:</strong> 2026-04-29</p>
+      <p>Дорожная карта внедрения продукта с нуля до production, с фиксацией каждого этапа.</p>
+    </section>
+
+    <section class="meta">
+      <div><strong>Customer</strong><br>Product Owner / Заказчик</div>
+      <div><strong>Executor</strong><br>Documentation Architect / Implementation Executor</div>
+      <div><strong>Main Objective</strong><br>Shortest safe path to a working prototype</div>
+      <div><strong>Current Focus</strong><br>Prototype v0.1 vertical slice</div>
+    </section>
+
+    <h2 class="section-title">1. Главные правила движения</h2>
+    <section class="principles">
+      <ol>
+        <li>Скорость важна, но только через проверяемые этапы.</li>
+        <li>Документация должна ускорять разработку, а не заменять продукт.</li>
+        <li>Новые идеи идут в backlog, а не расширяют MVP автоматически.</li>
+        <li>Первый рабочий vertical slice важнее десятков незавершённых модулей.</li>
+        <li>Каждый этап заканчивается deliverables, acceptance criteria и GitHub checkpoint.</li>
+      </ol>
+    </section>
+
+    <h2 class="section-title">2. Обзор этапов</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Phase</th><th>Name</th><th>Status</th><th>Exit Gate</th></tr></thead>
+        <tbody><tr><td>PHASE_0</td><td>Product Framing / Продуктовая рамка</td><td><span class='badge PARTIAL'>PARTIAL</span></td><td>Можно объяснить продукт разработчику или инвестору за 2–3 минуты без потери смысла.</td></tr>
+<tr><td>PHASE_1</td><td>Documentation Operating System / Операционная система документации</td><td><span class='badge IN_PROGRESS'>IN_PROGRESS</span></td><td>Можно понять, какой документ за что отвечает, какие документы связаны и какие документы читать перед реализацией модуля.</td></tr>
+<tr><td>PHASE_2</td><td>Lean Prototype Specifications / Минимальные спецификации прототипа</td><td><span class='badge NEXT'>NEXT</span></td><td>Backend implementation can start.</td></tr>
+<tr><td>PHASE_3</td><td>Backend Prototype Core / Ядро backend-прототипа</td><td><span class='badge NOT_STARTED'>NOT_STARTED</span></td><td>Backend создаёт проект и комнату, возвращает корректный core-summary.</td></tr>
+<tr><td>PHASE_4</td><td>Rule Artifacts + Deterministic Engines / Правила и расчётные движки</td><td><span class='badge NOT_STARTED'>NOT_STARTED</span></td><td>Можно объяснить расчёт цепочкой: operation → rule → norm → formula → quantity → package_count.</td></tr>
+<tr><td>PHASE_5</td><td>Minimal Guided Web UI / Минимальный guided web UI</td><td><span class='badge NOT_STARTED'>NOT_STARTED</span></td><td>Неспециалист может создать комнату и прочитать результат.</td></tr>
+<tr><td>PHASE_6</td><td>Prototype Integration + Release / Интеграция и выпуск Prototype v0.1</td><td><span class='badge NOT_STARTED'>NOT_STARTED</span></td><td>Prototype v0.1 можно показать как рабочий продуктовый срез.</td></tr>
+<tr><td>PHASE_7</td><td>MVP Hardening / Укрепление MVP</td><td><span class='badge NOT_STARTED'>NOT_STARTED</span></td><td>MVP можно тестировать на нескольких реалистичных сценариях ремонта.</td></tr>
+<tr><td>PHASE_8</td><td>Pilot Usage / Пилотное использование</td><td><span class='badge NOT_STARTED'>NOT_STARTED</span></td><td>Понятно, что исправлять перед production-hardening.</td></tr>
+<tr><td>PHASE_9</td><td>Production Hardening / Подготовка к production</td><td><span class='badge NOT_STARTED'>NOT_STARTED</span></td><td>Можно выпускать production-ready v1 для ограниченного использования.</td></tr>
+<tr><td>PHASE_10</td><td>Post-MVP Expansion / Расширение после MVP</td><td><span class='badge FUTURE'>FUTURE</span></td><td>Платформа растёт слоями, а не превращается в кашу.</td></tr></tbody>
+      </table>
+    </div>
+
+    <h2 class="section-title">3. Фиксация каждого этапа</h2>
+    <section class="timeline">
+      
+    <article class="phase" data-status="PARTIAL">
+      <h3>PHASE_0 — Product Framing / Продуктовая рамка</h3>
+      <span class="badge PARTIAL">PARTIAL</span>
+      <p><strong>Цель:</strong> Зафиксировать, что мы строим, для кого и какую реальную ценность даёт платформа.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>01_product_brief.md</li><li>Краткое описание продукта и главной ценности</li><li>Первичное разделение: калькулятор / дизайн / платформа управления ремонтом</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Понятно, какую проблему решает продукт.</li><li>Понятно, почему Material Consumption Engine является ядром.</li><li>Понятно, что продукт не сводится к простому калькулятору.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Можно объяснить продукт разработчику или инвестору за 2–3 минуты без потери смысла.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "docs: confirm product framing"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="IN_PROGRESS">
+      <h3>PHASE_1 — Documentation Operating System / Операционная система документации</h3>
+      <span class="badge IN_PROGRESS">IN_PROGRESS</span>
+      <p><strong>Цель:</strong> Создать управляемую систему документации, чтобы 60+ файлов не превратились в хаос.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>00_documentation_index.md</li><li>13_document_acceptance_and_governance.md</li><li>45_documentation_writing_methodology_and_style_guide.md</li><li>docs/documentation_registry_v0.1.yaml</li><li>docs/audit/documentation_audit_question_matrix_v0.1.md</li><li>docs/audit/documentation_dependency_map_v0.1.md</li><li>docs/cards/document_cards_v0.1.md</li><li>docs/templates/document_template.md</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Все документы 00–60 проиндексированы.</li><li>Есть карта зависимостей.</li><li>Есть карточки документов.</li><li>Есть audit matrix.</li><li>Есть правила freeze и Change Request.</li><li>Есть запрет на бесконечное расширение документации.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Можно понять, какой документ за что отвечает, какие документы связаны и какие документы читать перед реализацией модуля.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "docs: initialize documentation operating system"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NEXT">
+      <h3>PHASE_2 — Lean Prototype Specifications / Минимальные спецификации прототипа</h3>
+      <span class="badge NEXT">NEXT</span>
+      <p><strong>Цель:</strong> Написать только те документы, без которых нельзя безопасно начать рабочий прототип.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>02_mvp_scope.md</li><li>05_domain_model.md</li><li>06_json_artifacts_spec.md</li><li>08_material_consumption_engine_spec.md</li><li>10_api_contract.md</li><li>26_validation_and_error_handling_spec.md</li><li>27_development_methodology_and_coding_standards.md</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Prototype v0.1 строго ограничен.</li><li>Сущности и поля понятны.</li><li>JSON artifacts описаны.</li><li>Material formulas и package_count описаны.</li><li>API endpoints и responses описаны.</li><li>Ошибки и no silent fallback описаны.</li><li>Разработчик может начать backend без догадок.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Backend implementation can start.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "docs: complete lean prototype specifications"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NOT_STARTED">
+      <h3>PHASE_3 — Backend Prototype Core / Ядро backend-прототипа</h3>
+      <span class="badge NOT_STARTED">NOT_STARTED</span>
+      <p><strong>Цель:</strong> Собрать первый backend vertical slice: Project → Room → Geometry → Summaries.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>FastAPI backend</li><li>SQLite database</li><li>Pydantic schemas</li><li>SQLAlchemy models</li><li>Geometry module</li><li>Project and Room endpoints</li><li>Basic pytest suite</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>API запускается локально.</li><li>Можно создать проект.</li><li>Можно создать комнату.</li><li>Считаются площадь пола, потолка, стен и периметр.</li><li>Есть тесты геометрии и базовой валидации.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Backend создаёт проект и комнату, возвращает корректный core-summary.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "feat: add backend prototype core"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NOT_STARTED">
+      <h3>PHASE_4 — Rule Artifacts + Deterministic Engines / Правила и расчётные движки</h3>
+      <span class="badge NOT_STARTED">NOT_STARTED</span>
+      <p><strong>Цель:</strong> Подключить JSON artifacts и реализовать детерминированные движки операций, материалов, стоимости и закупки.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>data/artifacts/coatings_v1.json</li><li>data/artifacts/materials_v1.json</li><li>data/artifacts/packages_v1.json</li><li>data/artifacts/operations_v1.json</li><li>data/artifacts/material_norms_v1.json</li><li>data/artifacts/operation_material_rules_v1.json</li><li>Execution Engine</li><li>Material Consumption Engine</li><li>Cost Engine</li><li>Procurement Engine</li><li>Validation Engine</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Одинаковые входные данные дают одинаковый результат.</li><li>Missing rule возвращает ошибку, а не пустой результат.</li><li>Missing norm возвращает ошибку.</li><li>package_count считается через ceil().</li><li>loss_factor применяется.</li><li>Тесты проверяют конкретные числовые значения.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Можно объяснить расчёт цепочкой: operation → rule → norm → formula → quantity → package_count.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "feat: add rule artifacts and calculation engines"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NOT_STARTED">
+      <h3>PHASE_5 — Minimal Guided Web UI / Минимальный guided web UI</h3>
+      <span class="badge NOT_STARTED">NOT_STARTED</span>
+      <p><strong>Цель:</strong> Сделать интерфейс, где пользователь проходит сценарий без работы с JSON.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>Next.js frontend</li><li>Projects screen</li><li>Create Project form</li><li>Room Setup form</li><li>Zone and Covering Selection</li><li>Results Dashboard</li><li>Materials Summary</li><li>Cost Summary</li><li>Procurement Summary</li><li>Errors / Warnings panel</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Пользователь может пройти весь vertical slice через UI.</li><li>Видны текущий шаг, готовые шаги и заблокированные шаги.</li><li>Ошибки и warnings понятны.</li><li>Результаты материалов, стоимости и закупки отображаются без JSON-консоли.</li><li>UI достаточно responsive для мобильного браузера.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Неспециалист может создать комнату и прочитать результат.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "feat: add minimal guided web UI"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NOT_STARTED">
+      <h3>PHASE_6 — Prototype Integration + Release / Интеграция и выпуск Prototype v0.1</h3>
+      <span class="badge NOT_STARTED">NOT_STARTED</span>
+      <p><strong>Цель:</strong> Соединить backend и frontend, прогнать тесты и зафиксировать первый работающий прототип.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>Working backend</li><li>Working frontend</li><li>Integration flow</li><li>pytest tests</li><li>API smoke tests</li><li>README</li><li>MANIFEST.json</li><li>CHANGELOG.md</li><li>run_report.md</li><li>GitHub tag v0.1.0-prototype</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Backend работает.</li><li>Frontend работает.</li><li>Core flow работает от создания проекта до закупочной ведомости.</li><li>Тесты проходят.</li><li>Ошибки видны пользователю.</li><li>README объясняет запуск.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Prototype v0.1 можно показать как рабочий продуктовый срез.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "release: prototype v0.1"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NOT_STARTED">
+      <h3>PHASE_7 — MVP Hardening / Укрепление MVP</h3>
+      <span class="badge NOT_STARTED">NOT_STARTED</span>
+      <p><strong>Цель:</strong> Превратить прототип в более надёжный MVP-кандидат.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>Multi-room project summaries</li><li>Better validation messages</li><li>More complete material rules</li><li>Artifact validation</li><li>Improved UI</li><li>Basic export</li><li>Expanded tests</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Проект может содержать несколько комнат.</li><li>Project-level summaries работают.</li><li>Основные материалы покрыты правилами.</li><li>Ошибки понятны.</li><li>Расчёты проверяются тестами.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>MVP можно тестировать на нескольких реалистичных сценариях ремонта.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "feat: harden MVP candidate"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NOT_STARTED">
+      <h3>PHASE_8 — Pilot Usage / Пилотное использование</h3>
+      <span class="badge NOT_STARTED">NOT_STARTED</span>
+      <p><strong>Цель:</strong> Проверить MVP на реалистичных сценариях и собрать список улучшений.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>Pilot report</li><li>Bug list</li><li>Missing rules list</li><li>UX friction list</li><li>Calculation review</li><li>Improvement backlog</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Проверены минимум 5 сценариев.</li><li>Найдены недостающие правила.</li><li>Проверены ключевые расчёты.</li><li>UX-проблемы зафиксированы.</li><li>Проблемы переведены в задачи.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Понятно, что исправлять перед production-hardening.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "docs: add pilot report"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="NOT_STARTED">
+      <h3>PHASE_9 — Production Hardening / Подготовка к production</h3>
+      <span class="badge NOT_STARTED">NOT_STARTED</span>
+      <p><strong>Цель:</strong> Подготовить платформу к контролируемому реальному использованию.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>Authentication</li><li>Basic RBAC</li><li>Backup / restore</li><li>Deployment environment</li><li>Error logging</li><li>Security checklist</li><li>Database migration readiness</li><li>Support workflow</li><li>Bugfix policy</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Приложение можно deploy.</li><li>Данные бэкапятся.</li><li>Restore задокументирован и протестирован.</li><li>Доступы контролируются.</li><li>Ошибки логируются.</li><li>Release process понятен.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Можно выпускать production-ready v1 для ограниченного использования.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "release: production-ready v1"</pre></div>
+    </article>
+    
+    <article class="phase" data-status="FUTURE">
+      <h3>PHASE_10 — Post-MVP Expansion / Расширение после MVP</h3>
+      <span class="badge FUTURE">FUTURE</span>
+      <p><strong>Цель:</strong> Добавлять большие слои только после работающего ядра.</p>
+      <div class="grid">
+        <div class="card"><h4>Deliverables</h4><ul><li>Engineering systems track</li><li>Doors/windows/openings track</li><li>Fixtures/furniture/appliances track</li><li>HVAC/heating/smart-home tracks</li><li>Suppliers/procurement ecosystem</li><li>Contractor/customer workflows</li><li>Mobile app</li><li>External integrations</li><li>Commercial subscriptions</li></ul></div>
+        <div class="card"><h4>Acceptance Criteria</h4><ul><li>Расширение имеет бизнес-ценность.</li><li>Core prototype стабилен.</li><li>Новая функция реализуется vertical slice.</li><li>MVP не ломается.</li><li>Есть отдельный backlog/roadmap для расширения.</li></ul></div>
+      </div>
+      <div class="card" style="margin-top:14px;"><h4>Exit Gate</h4><p>Платформа растёт слоями, а не превращается в кашу.</p></div>
+      <div class="card" style="margin-top:14px;"><h4>GitHub Checkpoint</h4><pre>git commit -m "docs: plan post-MVP expansion"</pre></div>
+    </article>
+    
+    </section>
+
+    <h2 class="section-title">4. Текущая дистанция до рабочего прототипа</h2>
+    <section class="principles">
+      <pre>Current status:
+- Documentation OS: mostly done
+- Document cards: done
+- Dependency map: done
+- Lean MVP scope: in progress
+- Roadmap: this document
+- Backend: not started
+- Frontend: not started</pre>
+
+      <p><strong>Перед backend implementation нужны только эти full-spec документы:</strong></p>
+      <pre>02_mvp_scope.md
+05_domain_model.md
+06_json_artifacts_spec.md
+08_material_consumption_engine_spec.md
+10_api_contract.md
+26_validation_and_error_handling_spec.md
+27_development_methodology_and_coding_standards.md</pre>
+    </section>
+
+    <h2 class="section-title">5. Stop Rules</h2>
+    <section class="principles">
+      <ol>
+        <li>Не добавлять новые numbered documents без критической причины.</li>
+        <li>Не углублять future-документы до работающего prototype core.</li>
+        <li>Не реализовывать production-scale features до Prototype v0.1.</li>
+        <li>Не обходить MVP Scope.</li>
+        <li>Не принимать функции без acceptance criteria.</li>
+        <li>Не реализовывать формулы без тестов.</li>
+        <li>Не допускать silent fallback.</li>
+      </ol>
+    </section>
+
+    <p class="footer">Document path: <code>docs/28_roadmap_to_mvp_and_production.html</code></p>
+  </main>
+</body>
+</html>
