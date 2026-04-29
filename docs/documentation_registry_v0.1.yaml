@@ -1,0 +1,1507 @@
+registry_version: v0.1.1
+project: Buildx Repair Platform
+date: '2026-04-29'
+purpose: Machine-readable map of platform documentation, audit files, dependencies and AI reading packs.
+documents:
+- document_id: DOC_00
+  file: 00_documentation_index.md
+  title: Documentation Index
+  status: DRAFT
+  hierarchy_level: Level 0 — Documentation Control
+  implementation_block: Documentation Navigation
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Documentation Navigation
+  directly_related_documents:
+  - docs/audit/documentation_audit_question_matrix_v0.1.md
+  - docs/audit/documentation_dependency_map_v0.1.md
+  - docs/documentation_registry_v0.1.yaml
+  upstream_dependencies: []
+  downstream_dependencies:
+  - ALL_DOCUMENTS
+  tags:
+  - documentation-navigation
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - documentation_navigation
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_01
+  file: 01_product_brief.md
+  title: Product Brief
+  status: PLANNED
+  hierarchy_level: Level 1 — Product Layer
+  implementation_block: Product Vision
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Product Vision
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - product-vision
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - product_vision
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_02
+  file: 02_mvp_scope.md
+  title: MVP Scope
+  status: PLANNED
+  hierarchy_level: Level 1 — Product Layer
+  implementation_block: MVP Boundaries
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - MVP Boundaries
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - mvp-boundaries
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - mvp_boundaries
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_03
+  file: 03_user_flow_and_modules.md
+  title: User Flow and Modules
+  status: PLANNED
+  hierarchy_level: Level 1 — Product Layer
+  implementation_block: User Workflow / Modules
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - User Workflow / Modules
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - user-workflow-modules
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - user_workflow_modules
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_04
+  file: 04_system_architecture.md
+  title: System Architecture
+  status: PLANNED
+  hierarchy_level: Level 2 — System Layer
+  implementation_block: Architecture
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Architecture
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - architecture
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - architecture
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_05
+  file: 05_domain_model.md
+  title: Domain Model
+  status: PLANNED
+  hierarchy_level: Level 2 — System Layer
+  implementation_block: Domain/Data Model
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Domain/Data Model
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - domain-data-model
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - domain_data_model
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_06
+  file: 06_json_artifacts_spec.md
+  title: JSON Artifacts Specification
+  status: PLANNED
+  hierarchy_level: Level 2 — System Layer
+  implementation_block: Rule/Data Artifacts
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Rule/Data Artifacts
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - rule-data-artifacts
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - rule_data_artifacts
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_07
+  file: 07_execution_engine_spec.md
+  title: Execution Engine Specification
+  status: PLANNED
+  hierarchy_level: Level 3 — Core Engines
+  implementation_block: Execution Engine
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Execution Engine
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - execution-engine
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - execution_engine
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_08
+  file: 08_material_consumption_engine_spec.md
+  title: Material Consumption Engine Specification
+  status: PLANNED
+  hierarchy_level: Level 3 — Core Engines
+  implementation_block: Material Consumption Engine
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Material Consumption Engine
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - material-consumption-engine
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - material_consumption_engine
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks:
+  - 09_cost_and_procurement_spec.md must not recalculate material quantities independently.
+  - 06_json_artifacts_spec.md must contain required fields for formulas used by this document.
+  - 12_testing_and_release_spec.md must test the formulas defined here.
+- document_id: DOC_09
+  file: 09_cost_and_procurement_spec.md
+  title: Cost and Procurement Specification
+  status: PLANNED
+  hierarchy_level: Level 3 — Core Engines
+  implementation_block: Cost / Procurement
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Cost / Procurement
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - cost-procurement
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - cost_procurement
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_10
+  file: 10_api_contract.md
+  title: API Contract
+  status: PLANNED
+  hierarchy_level: Level 4 — Interfaces
+  implementation_block: Backend API
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Backend API
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - backend-api
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - backend_api
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks:
+  - API fields must not contradict 05_domain_model.md.
+  - API error behavior must follow 26_validation_and_error_handling_spec.md.
+  - External integrations must be handled by 53_external_integrations_and_api_interoperability_spec.md.
+- document_id: DOC_11
+  file: 11_ui_ux_spec.md
+  title: UI/UX Specification
+  status: PLANNED
+  hierarchy_level: Level 4 — Interfaces
+  implementation_block: User Experience
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - User Experience
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - user-experience
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - user_experience
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_12
+  file: 12_testing_and_release_spec.md
+  title: Testing and Release Specification
+  status: PLANNED
+  hierarchy_level: Level 5 — QA / Release
+  implementation_block: Testing / Release
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Testing / Release
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - testing-release
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - testing_release
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_13
+  file: 13_document_acceptance_and_governance.md
+  title: Document Acceptance and Governance
+  status: DRAFT
+  hierarchy_level: Level 0 — Documentation Control
+  implementation_block: Documentation Governance
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Documentation Governance
+  directly_related_documents:
+  - docs/audit/documentation_audit_question_matrix_v0.1.md
+  - docs/audit/documentation_dependency_map_v0.1.md
+  - docs/documentation_registry_v0.1.yaml
+  upstream_dependencies: []
+  downstream_dependencies:
+  - ALL_DOCUMENTS
+  tags:
+  - documentation-governance
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - documentation_governance
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_14
+  file: 14_tooling_equipment_and_robotics_spec.md
+  title: Tooling, Equipment and Robotics Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Tools / Equipment / Robotics
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Tools / Equipment / Robotics
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - tools-equipment-robotics
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - tools_equipment_robotics
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_15
+  file: 15_engineering_layer_spec.md
+  title: Engineering Layer Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Engineering
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Engineering
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - engineering
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - engineering
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_16
+  file: 16_openings_doors_windows_spec.md
+  title: Openings, Doors and Windows Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Openings / Doors / Windows
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Openings / Doors / Windows
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - openings-doors-windows
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - openings_doors_windows
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_17
+  file: 17_construction_technology_and_sequencing_spec.md
+  title: Construction Technology and Sequencing Specification
+  status: PLANNED
+  hierarchy_level: Level 3 — Core Engines
+  implementation_block: Sequencing Engine
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Sequencing Engine
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - sequencing-engine
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - sequencing_engine
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_18
+  file: 18_fixtures_furniture_and_equipment_spec.md
+  title: Fixtures, Furniture and Equipment Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Fixtures / Furniture / Equipment
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Fixtures / Furniture / Equipment
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - fixtures-furniture-equipment
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - fixtures_furniture_equipment
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_19
+  file: 19_recommendation_and_constraint_engine_spec.md
+  title: Recommendation and Constraint Engine Specification
+  status: PLANNED
+  hierarchy_level: Level 3 — Core Engines
+  implementation_block: Recommendations / Constraints
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Recommendations / Constraints
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - recommendations-constraints
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - recommendations_constraints
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_20
+  file: 20_hvac_ventilation_and_air_quality_spec.md
+  title: HVAC, Ventilation and Air Quality Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: HVAC / Air Quality
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - HVAC / Air Quality
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - hvac-air-quality
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - hvac_air_quality
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_21
+  file: 21_acoustic_thermal_and_building_physics_spec.md
+  title: Acoustic, Thermal and Building Physics Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Acoustic / Thermal / Physics
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Acoustic / Thermal / Physics
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - acoustic-thermal-physics
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - acoustic_thermal_physics
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_22
+  file: 22_heating_systems_spec.md
+  title: Heating Systems Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Heating
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Heating
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - heating
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - heating
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_23
+  file: 23_smart_home_and_automation_spec.md
+  title: Smart Home and Automation Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Smart Home / Automation
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Smart Home / Automation
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - smart-home-automation
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - smart_home_automation
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_24
+  file: 24_auxiliary_spaces_balconies_loggias_storage_spec.md
+  title: Auxiliary Spaces, Balconies, Loggias and Storage Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Auxiliary Spaces
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Auxiliary Spaces
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - auxiliary-spaces
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - auxiliary_spaces
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_25
+  file: 25_accessories_hardware_and_finishing_components_spec.md
+  title: Accessories, Hardware and Finishing Components Specification
+  status: PLANNED
+  hierarchy_level: Level 6 — Domain Expansion
+  implementation_block: Accessories / Hardware
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Accessories / Hardware
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - accessories-hardware
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - accessories_hardware
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_26
+  file: 26_validation_and_error_handling_spec.md
+  title: Validation and Error Handling Specification
+  status: PLANNED
+  hierarchy_level: Level 3 — Core Engines
+  implementation_block: Validation / Errors
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Validation / Errors
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - validation-errors
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - validation_errors
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_27
+  file: 27_development_methodology_and_coding_standards.md
+  title: Development Methodology and Coding Standards
+  status: PLANNED
+  hierarchy_level: Level 5 — Development Discipline
+  implementation_block: Coding Standards
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Coding Standards
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - coding-standards
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - coding_standards
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_28
+  file: 28_roadmap_to_mvp_and_production.md
+  title: Roadmap to MVP and Production
+  status: PLANNED
+  hierarchy_level: Level 1 — Product Planning
+  implementation_block: Roadmap
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Roadmap
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - roadmap
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - roadmap
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_29
+  file: 29_calculation_versioning_and_traceability_spec.md
+  title: Calculation Versioning and Traceability Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Production / Operations
+  implementation_block: Calculation Traceability
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Calculation Traceability
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - calculation-traceability
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - calculation_traceability
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_30
+  file: 30_users_roles_permissions_and_access_control_spec.md
+  title: Users, Roles, Permissions and Access Control Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Security / Access
+  implementation_block: RBAC
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - RBAC
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - rbac
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - rbac
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_31
+  file: 31_information_security_privacy_backup_and_cyber_protection_spec.md
+  title: Information Security, Privacy, Backup and Cyber Protection Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Security / Resilience
+  implementation_block: Security / Backup
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Security / Backup
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - security-backup
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - security_backup
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_32
+  file: 32_files_media_and_project_evidence_spec.md
+  title: Files, Media and Project Evidence Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Production / Data
+  implementation_block: Files / Evidence
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Files / Evidence
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - files-evidence
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - files_evidence
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_33
+  file: 33_catalog_and_rules_governance_spec.md
+  title: Catalog and Rules Governance Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Governance
+  implementation_block: Catalog Governance
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Catalog Governance
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - catalog-governance
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - catalog_governance
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_34
+  file: 34_deployment_environments_and_operations_spec.md
+  title: Deployment, Environments and Operations Specification
+  status: PLANNED
+  hierarchy_level: Level 5 — Operations
+  implementation_block: Deployment / Environments
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Deployment / Environments
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - deployment-environments
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - deployment_environments
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_35
+  file: 35_observability_logging_and_diagnostics_spec.md
+  title: Observability, Logging and Diagnostics Specification
+  status: PLANNED
+  hierarchy_level: Level 5 — Operations
+  implementation_block: Logging / Diagnostics
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Logging / Diagnostics
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - logging-diagnostics
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - logging_diagnostics
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_36
+  file: 36_regulatory_safety_and_liability_boundaries_spec.md
+  title: Regulatory, Safety and Liability Boundaries Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Compliance
+  implementation_block: Safety / Liability
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Safety / Liability
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - safety-liability
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - safety_liability
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_37
+  file: 37_units_currency_localization_and_market_adaptation_spec.md
+  title: Units, Currency, Localization and Market Adaptation Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Localization
+  implementation_block: Units / Currency / Localization
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Units / Currency / Localization
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - units-currency-localization
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - units_currency_localization
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_38
+  file: 38_change_impact_and_recalculation_spec.md
+  title: Change Impact and Recalculation Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Production Logic
+  implementation_block: Recalculation / Impact
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Recalculation / Impact
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - recalculation-impact
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - recalculation_impact
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_39
+  file: 39_project_room_status_lifecycle_spec.md
+  title: Project and Room Status Lifecycle Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Product State
+  implementation_block: Status Lifecycle
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Status Lifecycle
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - status-lifecycle
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - status_lifecycle
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_40
+  file: 40_reports_exports_and_printable_outputs_spec.md
+  title: Reports, Exports and Printable Outputs Specification
+  status: PLANNED
+  hierarchy_level: Level 4 — Interfaces
+  implementation_block: Reports / Exports
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Reports / Exports
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - reports-exports
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - reports_exports
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_41
+  file: 41_ai_usage_boundaries_and_human_approval_spec.md
+  title: AI Usage Boundaries and Human Approval Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — AI Governance
+  implementation_block: AI Boundaries
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - AI Boundaries
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - ai-boundaries
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - ai_boundaries
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_42
+  file: 42_performance_limits_and_scalability_spec.md
+  title: Performance, Limits and Scalability Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Operations
+  implementation_block: Performance / Scalability
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Performance / Scalability
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - performance-scalability
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - performance_scalability
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_43
+  file: 43_pricing_suppliers_and_market_data_spec.md
+  title: Pricing, Suppliers and Market Data Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Business / Data
+  implementation_block: Pricing / Market Data
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Pricing / Market Data
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - pricing-market-data
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - pricing_market_data
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_44
+  file: 44_maintenance_updates_and_support_spec.md
+  title: Maintenance, Updates and Support Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Operations / Support
+  implementation_block: Maintenance / Support
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Maintenance / Support
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - maintenance-support
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - maintenance_support
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_45
+  file: 45_documentation_writing_methodology_and_style_guide.md
+  title: Documentation Writing Methodology and Style Guide
+  status: DRAFT
+  hierarchy_level: Level 0 — Documentation Control
+  implementation_block: Documentation Writing
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Documentation Writing
+  directly_related_documents:
+  - docs/audit/documentation_audit_question_matrix_v0.1.md
+  - docs/audit/documentation_dependency_map_v0.1.md
+  - docs/documentation_registry_v0.1.yaml
+  upstream_dependencies: []
+  downstream_dependencies:
+  - ALL_DOCUMENTS
+  tags:
+  - documentation-writing
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - documentation_writing
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_46
+  file: 46_customer_workflow_and_client_management_spec.md
+  title: Customer Workflow and Client Management Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Business Process
+  implementation_block: Customer Workflow
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Customer Workflow
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - customer-workflow
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - customer_workflow
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_47
+  file: 47_contractor_workflow_and_subcontractor_management_spec.md
+  title: Contractor Workflow and Subcontractor Management Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Business Process
+  implementation_block: Contractor Workflow
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Contractor Workflow
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - contractor-workflow
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - contractor_workflow
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_48
+  file: 48_bugfix_improvement_and_regression_policy.md
+  title: Bugfix, Improvement and Regression Policy
+  status: PLANNED
+  hierarchy_level: Level 5 — QA / Maintenance
+  implementation_block: Bugfix Policy
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Bugfix Policy
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - bugfix-policy
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - bugfix_policy
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_49
+  file: 49_suppliers_procurement_and_rental_ecosystem_spec.md
+  title: Suppliers, Procurement and Rental Ecosystem Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Business / Procurement
+  implementation_block: Supplier / Rental
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Supplier / Rental
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - supplier-rental
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - supplier_rental
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_50
+  file: 50_knowledge_base_and_documentation_rag_spec.md
+  title: Knowledge Base and Documentation RAG Specification
+  status: PLANNED
+  hierarchy_level: Level 0 — Documentation Infrastructure
+  implementation_block: Knowledge Base / RAG
+  criticality: CRITICAL
+  scope: MVP + Future-ready
+  source_of_truth_for:
+  - Knowledge Base / RAG
+  directly_related_documents:
+  - docs/audit/documentation_audit_question_matrix_v0.1.md
+  - docs/audit/documentation_dependency_map_v0.1.md
+  - docs/documentation_registry_v0.1.yaml
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - knowledge-base-rag
+  ai_usage:
+    required_before_implementation: true
+    required_for_modules:
+    - knowledge_base_rag
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_51
+  file: 51_multi_client_mobile_and_role_based_access_spec.md
+  title: Multi-Client, Mobile and Role-Based Access Specification
+  status: PLANNED
+  hierarchy_level: Level 4 — Interfaces / Access
+  implementation_block: Multi-client / Mobile
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Multi-client / Mobile
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - multi-client-mobile
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - multi_client_mobile
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_52
+  file: 52_design_system_and_visual_language_spec.md
+  title: Design System and Visual Language Specification
+  status: PLANNED
+  hierarchy_level: Level 4 — Interfaces / Design
+  implementation_block: Design System
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Design System
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - design-system
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - design_system
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_53
+  file: 53_external_integrations_and_api_interoperability_spec.md
+  title: External Integrations and API Interoperability Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Integrations
+  implementation_block: External Integrations
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - External Integrations
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - external-integrations
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - external_integrations
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_54
+  file: 54_commercial_models_partnerships_and_monetization_spec.md
+  title: Commercial Models, Partnerships and Monetization Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Business Model
+  implementation_block: Commercial Models
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Commercial Models
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - commercial-models
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - commercial_models
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_55
+  file: 55_database_schema_migrations_and_data_integrity_spec.md
+  title: Database Schema, Migrations and Data Integrity Specification
+  status: PLANNED
+  hierarchy_level: Level 2 — System Layer
+  implementation_block: Database / Migrations
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Database / Migrations
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - database-migrations
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - database_migrations
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_56
+  file: 56_notifications_communications_and_activity_feed_spec.md
+  title: Notifications, Communications and Activity Feed Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Product Communication
+  implementation_block: Notifications / Activity
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Notifications / Activity
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - notifications-activity
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - notifications_activity
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_57
+  file: 57_approvals_change_orders_and_decision_log_spec.md
+  title: Approvals, Change Orders and Decision Log Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Business Process
+  implementation_block: Approvals / Change Orders
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Approvals / Change Orders
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - approvals-change-orders
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - approvals_change_orders
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_58
+  file: 58_product_analytics_kpi_and_usage_metrics_spec.md
+  title: Product Analytics, KPI and Usage Metrics Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Product Analytics
+  implementation_block: Analytics / KPI
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Analytics / KPI
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - analytics-kpi
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - analytics_kpi
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_59
+  file: 59_user_onboarding_help_center_and_training_spec.md
+  title: User Onboarding, Help Center and Training Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — User Enablement
+  implementation_block: Onboarding / Training
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Onboarding / Training
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - onboarding-training
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - onboarding_training
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+- document_id: DOC_60
+  file: 60_legal_contracts_financial_documents_and_e_signatures_spec.md
+  title: Legal, Contracts, Financial Documents and E-Signatures Specification
+  status: PLANNED
+  hierarchy_level: Level 7 — Legal / Finance
+  implementation_block: Legal / Financial Docs
+  criticality: NORMAL
+  scope: Framework / Future-ready
+  source_of_truth_for:
+  - Legal / Financial Docs
+  directly_related_documents: []
+  upstream_dependencies: []
+  downstream_dependencies: []
+  tags:
+  - legal-financial-docs
+  ai_usage:
+    required_before_implementation: false
+    required_for_modules:
+    - legal_financial_docs
+  duplication_guard:
+    must_not_duplicate: []
+  conflict_risks: []
+last_updated: '2026-04-29'
+control_files:
+- file: docs/00_documentation_index.md
+  purpose: Human-readable documentation navigation index
+  status: DRAFT
+  criticality: CRITICAL
+- file: docs/documentation_registry_v0.1.yaml
+  purpose: Machine-readable documentation registry
+  status: DRAFT
+  criticality: CRITICAL
+- file: docs/audit/documentation_audit_question_matrix_v0.1.md
+  purpose: Audit questions and acceptance/freeze audit criteria
+  status: DRAFT
+  criticality: CRITICAL
+- file: docs/audit/documentation_dependency_map_v0.1.md
+  purpose: Human-readable map of cross-document dependencies and AI reading packs
+  status: DRAFT
+  criticality: CRITICAL
+- file: docs/templates/document_template.md
+  purpose: Standard template for all documentation files
+  status: DRAFT
+  criticality: CRITICAL
+ai_reading_packs:
+  backend_core_pack:
+  - 02_mvp_scope.md
+  - 04_system_architecture.md
+  - 05_domain_model.md
+  - 06_json_artifacts_spec.md
+  - 26_validation_and_error_handling_spec.md
+  - 27_development_methodology_and_coding_standards.md
+  - 55_database_schema_migrations_and_data_integrity_spec.md
+  material_engine_pack:
+  - 02_mvp_scope.md
+  - 05_domain_model.md
+  - 06_json_artifacts_spec.md
+  - 07_execution_engine_spec.md
+  - 08_material_consumption_engine_spec.md
+  - 09_cost_and_procurement_spec.md
+  - 12_testing_and_release_spec.md
+  - 26_validation_and_error_handling_spec.md
+  - 29_calculation_versioning_and_traceability_spec.md
+  execution_and_sequencing_pack:
+  - 05_domain_model.md
+  - 06_json_artifacts_spec.md
+  - 07_execution_engine_spec.md
+  - 17_construction_technology_and_sequencing_spec.md
+  - 26_validation_and_error_handling_spec.md
+  - 12_testing_and_release_spec.md
+  api_pack:
+  - 05_domain_model.md
+  - 06_json_artifacts_spec.md
+  - 07_execution_engine_spec.md
+  - 08_material_consumption_engine_spec.md
+  - 09_cost_and_procurement_spec.md
+  - 10_api_contract.md
+  - 26_validation_and_error_handling_spec.md
+  - 30_users_roles_permissions_and_access_control_spec.md
+  ui_ux_pack:
+  - 03_user_flow_and_modules.md
+  - 10_api_contract.md
+  - 11_ui_ux_spec.md
+  - 19_recommendation_and_constraint_engine_spec.md
+  - 26_validation_and_error_handling_spec.md
+  - 39_project_room_status_lifecycle_spec.md
+  - 51_multi_client_mobile_and_role_based_access_spec.md
+  - 52_design_system_and_visual_language_spec.md
+  security_pack:
+  - 30_users_roles_permissions_and_access_control_spec.md
+  - 31_information_security_privacy_backup_and_cyber_protection_spec.md
+  - 32_files_media_and_project_evidence_spec.md
+  - 34_deployment_environments_and_operations_spec.md
+  - 35_observability_logging_and_diagnostics_spec.md
+  - 53_external_integrations_and_api_interoperability_spec.md
+  supplier_procurement_pack:
+  - 09_cost_and_procurement_spec.md
+  - 14_tooling_equipment_and_robotics_spec.md
+  - 33_catalog_and_rules_governance_spec.md
+  - 40_reports_exports_and_printable_outputs_spec.md
+  - 43_pricing_suppliers_and_market_data_spec.md
+  - 49_suppliers_procurement_and_rental_ecosystem_spec.md
+  - 53_external_integrations_and_api_interoperability_spec.md
+  mobile_role_based_access_pack:
+  - 10_api_contract.md
+  - 11_ui_ux_spec.md
+  - 30_users_roles_permissions_and_access_control_spec.md
+  - 31_information_security_privacy_backup_and_cyber_protection_spec.md
+  - 39_project_room_status_lifecycle_spec.md
+  - 46_customer_workflow_and_client_management_spec.md
+  - 47_contractor_workflow_and_subcontractor_management_spec.md
+  - 51_multi_client_mobile_and_role_based_access_spec.md
+  - 52_design_system_and_visual_language_spec.md
+  production_readiness_pack:
+  - 12_testing_and_release_spec.md
+  - 29_calculation_versioning_and_traceability_spec.md
+  - 31_information_security_privacy_backup_and_cyber_protection_spec.md
+  - 34_deployment_environments_and_operations_spec.md
+  - 35_observability_logging_and_diagnostics_spec.md
+  - 42_performance_limits_and_scalability_spec.md
+  - 44_maintenance_updates_and_support_spec.md
+  - 48_bugfix_improvement_and_regression_policy.md
+documents_update_together:
+  02_mvp_scope.md:
+  - 00_documentation_index.md
+  - 03_user_flow_and_modules.md
+  - 04_system_architecture.md
+  - 12_testing_and_release_spec.md
+  - 28_roadmap_to_mvp_and_production.md
+  - docs/documentation_registry_v0.1.yaml
+  05_domain_model.md:
+  - 06_json_artifacts_spec.md
+  - 10_api_contract.md
+  - 26_validation_and_error_handling_spec.md
+  - 55_database_schema_migrations_and_data_integrity_spec.md
+  - docs/documentation_registry_v0.1.yaml
+  06_json_artifacts_spec.md:
+  - 07_execution_engine_spec.md
+  - 08_material_consumption_engine_spec.md
+  - 12_testing_and_release_spec.md
+  - 26_validation_and_error_handling_spec.md
+  - 33_catalog_and_rules_governance_spec.md
+  - docs/documentation_registry_v0.1.yaml
+  08_material_consumption_engine_spec.md:
+  - 09_cost_and_procurement_spec.md
+  - 12_testing_and_release_spec.md
+  - 26_validation_and_error_handling_spec.md
+  - 29_calculation_versioning_and_traceability_spec.md
+  - 40_reports_exports_and_printable_outputs_spec.md
+  10_api_contract.md:
+  - 11_ui_ux_spec.md
+  - 30_users_roles_permissions_and_access_control_spec.md
+  - 31_information_security_privacy_backup_and_cyber_protection_spec.md
+  - 51_multi_client_mobile_and_role_based_access_spec.md
+  - 53_external_integrations_and_api_interoperability_spec.md
+  49_suppliers_procurement_and_rental_ecosystem_spec.md:
+  - 09_cost_and_procurement_spec.md
+  - 14_tooling_equipment_and_robotics_spec.md
+  - 43_pricing_suppliers_and_market_data_spec.md
+  - 53_external_integrations_and_api_interoperability_spec.md
+  - 54_commercial_models_partnerships_and_monetization_spec.md
