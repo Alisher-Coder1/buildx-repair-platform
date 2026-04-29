@@ -1,0 +1,81 @@
+{
+  "contract_id": "BUILDX_API_CONTRACT_PROTO_V01",
+  "version": "v0.1",
+  "status": "DRAFT",
+  "created_at": "2026-04-29",
+  "base_path": "/api/v1",
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/projects",
+      "purpose": "Create project",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/projects/{project_id}",
+      "purpose": "Get project",
+      "required": true
+    },
+    {
+      "method": "POST",
+      "path": "/projects/{project_id}/rooms",
+      "purpose": "Create room",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/rooms/{room_id}",
+      "purpose": "Get room",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/rooms/{room_id}/core-summary",
+      "purpose": "Geometry/core summary",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/rooms/{room_id}/execution-summary",
+      "purpose": "Generated operations",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/rooms/{room_id}/material-consumption-summary",
+      "purpose": "Material quantities/packages",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/rooms/{room_id}/cost-summary",
+      "purpose": "Basic cost summary",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/rooms/{room_id}/procurement-summary",
+      "purpose": "Purchase list",
+      "required": true
+    },
+    {
+      "method": "GET",
+      "path": "/health",
+      "purpose": "Health check",
+      "required": false
+    }
+  ],
+  "required_error_codes": [
+    "ERR_REQUIRED_FIELD_MISSING",
+    "ERR_OUT_OF_RANGE",
+    "ERR_INVALID_ENUM_VALUE",
+    "ERR_EXTRA_FIELD_FORBIDDEN",
+    "ERR_UNSUPPORTED_COVERING",
+    "ERR_MATERIAL_RULE_MISSING",
+    "ERR_MATERIAL_NORM_MISSING",
+    "ERR_PACKAGE_SIZE_MISSING",
+    "ERR_INVALID_QUANTITY",
+    "ERR_NOT_FOUND"
+  ]
+}
