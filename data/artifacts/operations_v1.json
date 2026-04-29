@@ -1,0 +1,167 @@
+{
+  "artifact_name": "operations",
+  "artifact_version": "v1",
+  "prototype_version": "prototype_v0.1",
+  "items": [
+    {
+      "operation_id": "OPR_FLOOR_PREP",
+      "operation_name": "Floor surface preparation",
+      "stage": "STG_PREP",
+      "surface_type": "FLOOR",
+      "quantity_source": "floor_area_m2",
+      "default_unit": "M2",
+      "sort_order": 100,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_WALL_PREP",
+      "operation_name": "Wall surface preparation",
+      "stage": "STG_PREP",
+      "surface_type": "WALLS",
+      "quantity_source": "wall_area_m2",
+      "default_unit": "M2",
+      "sort_order": 110,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_CEILING_PREP",
+      "operation_name": "Ceiling surface preparation",
+      "stage": "STG_PREP",
+      "surface_type": "CEILING",
+      "quantity_source": "ceiling_area_m2",
+      "default_unit": "M2",
+      "sort_order": 120,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_FLOOR_WATERPROOFING",
+      "operation_name": "Floor waterproofing",
+      "stage": "STG_WATERPROOF",
+      "surface_type": "FLOOR",
+      "quantity_source": "floor_area_m2",
+      "default_unit": "M2",
+      "sort_order": 200,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_WALL_WATERPROOFING",
+      "operation_name": "Wall waterproofing",
+      "stage": "STG_WATERPROOF",
+      "surface_type": "WALLS",
+      "quantity_source": "wall_area_m2",
+      "default_unit": "M2",
+      "sort_order": 210,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_WALL_PLASTER",
+      "operation_name": "Wall plastering",
+      "stage": "STG_ROUGH",
+      "surface_type": "WALLS",
+      "quantity_source": "wall_area_m2",
+      "default_unit": "M2",
+      "sort_order": 300,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_WALL_PUTTY",
+      "operation_name": "Wall putty",
+      "stage": "STG_ROUGH",
+      "surface_type": "WALLS",
+      "quantity_source": "wall_area_m2",
+      "default_unit": "M2",
+      "sort_order": 310,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_WALL_PAINT",
+      "operation_name": "Wall painting",
+      "stage": "STG_FINISH",
+      "surface_type": "WALLS",
+      "quantity_source": "wall_area_m2",
+      "default_unit": "M2",
+      "sort_order": 400,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_CEILING_PAINT",
+      "operation_name": "Ceiling painting",
+      "stage": "STG_FINISH",
+      "surface_type": "CEILING",
+      "quantity_source": "ceiling_area_m2",
+      "default_unit": "M2",
+      "sort_order": 410,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_WALL_WALLPAPER",
+      "operation_name": "Wallpaper installation",
+      "stage": "STG_FINISH",
+      "surface_type": "WALLS",
+      "quantity_source": "wall_area_m2",
+      "default_unit": "M2",
+      "sort_order": 420,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_WALL_TILE_INSTALL",
+      "operation_name": "Wall tile installation",
+      "stage": "STG_FINISH",
+      "surface_type": "WALLS",
+      "quantity_source": "wall_area_m2",
+      "default_unit": "M2",
+      "sort_order": 430,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_FLOOR_LAMINATE_INSTALL",
+      "operation_name": "Laminate installation",
+      "stage": "STG_FINISH",
+      "surface_type": "FLOOR",
+      "quantity_source": "floor_area_m2",
+      "default_unit": "M2",
+      "sort_order": 440,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_FLOOR_LINOLEUM_INSTALL",
+      "operation_name": "Linoleum installation",
+      "stage": "STG_FINISH",
+      "surface_type": "FLOOR",
+      "quantity_source": "floor_area_m2",
+      "default_unit": "M2",
+      "sort_order": 450,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_FLOOR_TILE_INSTALL",
+      "operation_name": "Floor tile installation",
+      "stage": "STG_FINISH",
+      "surface_type": "FLOOR",
+      "quantity_source": "floor_area_m2",
+      "default_unit": "M2",
+      "sort_order": 460,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_FLOOR_SELF_LEVELING",
+      "operation_name": "Self-leveling floor",
+      "stage": "STG_ROUGH",
+      "surface_type": "FLOOR",
+      "quantity_source": "floor_area_m2",
+      "default_unit": "M2",
+      "sort_order": 320,
+      "is_active": true
+    },
+    {
+      "operation_id": "OPR_SKIRTING_INSTALL",
+      "operation_name": "Skirting board installation",
+      "stage": "STG_FINISH",
+      "surface_type": "FLOOR",
+      "quantity_source": "perimeter_m",
+      "default_unit": "M_LINEAR",
+      "sort_order": 500,
+      "is_active": true
+    }
+  ]
+}

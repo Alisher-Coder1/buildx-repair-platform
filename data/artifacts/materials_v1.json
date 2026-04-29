@@ -1,0 +1,112 @@
+{
+  "artifact_name": "materials",
+  "artifact_version": "v1",
+  "prototype_version": "prototype_v0.1",
+  "items": [
+    {
+      "material_id": "MAT_PRIMER",
+      "material_name": "Primer",
+      "default_unit": "LITER",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_PAINT_WALLS",
+      "material_name": "Wall paint",
+      "default_unit": "LITER",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_PAINT_CEILING",
+      "material_name": "Ceiling paint",
+      "default_unit": "LITER",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_PUTTY",
+      "material_name": "Putty",
+      "default_unit": "KG",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_PLASTER_MIX",
+      "material_name": "Plaster mix",
+      "default_unit": "KG",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_WATERPROOFING",
+      "material_name": "Waterproofing",
+      "default_unit": "KG",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_TILE_ADHESIVE",
+      "material_name": "Tile adhesive",
+      "default_unit": "KG",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_GROUT",
+      "material_name": "Grout",
+      "default_unit": "KG",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_LAMINATE",
+      "material_name": "Laminate",
+      "default_unit": "M2",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_LINOLEUM",
+      "material_name": "Linoleum",
+      "default_unit": "M2",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_PORCELAIN_TILE",
+      "material_name": "Porcelain tile",
+      "default_unit": "M2",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_CERAMIC_TILE",
+      "material_name": "Ceramic wall tile",
+      "default_unit": "M2",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_WALLPAPER",
+      "material_name": "Wallpaper",
+      "default_unit": "ROLL",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_SKIRTING",
+      "material_name": "Skirting board",
+      "default_unit": "M_LINEAR",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "material_id": "MAT_SELF_LEVELING_MIX",
+      "material_name": "Self-leveling mix",
+      "default_unit": "KG",
+      "prototype_enabled": true,
+      "is_active": true
+    }
+  ]
+}

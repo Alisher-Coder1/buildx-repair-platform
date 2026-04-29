@@ -1,0 +1,142 @@
+{
+  "artifact_name": "packages",
+  "artifact_version": "v1",
+  "prototype_version": "prototype_v0.1",
+  "items": [
+    {
+      "package_id": "PKG_PRIMER_10L",
+      "material_id": "MAT_PRIMER",
+      "package_size": 10,
+      "package_unit": "LITER",
+      "display_name": "10 L can",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_PAINT_WALLS_10L",
+      "material_id": "MAT_PAINT_WALLS",
+      "package_size": 10,
+      "package_unit": "LITER",
+      "display_name": "10 L bucket",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_PAINT_CEILING_10L",
+      "material_id": "MAT_PAINT_CEILING",
+      "package_size": 10,
+      "package_unit": "LITER",
+      "display_name": "10 L bucket",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_PUTTY_25KG",
+      "material_id": "MAT_PUTTY",
+      "package_size": 25,
+      "package_unit": "KG",
+      "display_name": "25 kg bag",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_PLASTER_30KG",
+      "material_id": "MAT_PLASTER_MIX",
+      "package_size": 30,
+      "package_unit": "KG",
+      "display_name": "30 kg bag",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_WATERPROOFING_20KG",
+      "material_id": "MAT_WATERPROOFING",
+      "package_size": 20,
+      "package_unit": "KG",
+      "display_name": "20 kg bucket",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_TILE_ADHESIVE_25KG",
+      "material_id": "MAT_TILE_ADHESIVE",
+      "package_size": 25,
+      "package_unit": "KG",
+      "display_name": "25 kg bag",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_GROUT_5KG",
+      "material_id": "MAT_GROUT",
+      "package_size": 5,
+      "package_unit": "KG",
+      "display_name": "5 kg bag",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_LAMINATE_2_0M2",
+      "material_id": "MAT_LAMINATE",
+      "package_size": 2.0,
+      "package_unit": "M2",
+      "display_name": "2.0 m2 pack",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_LINOLEUM_1M2",
+      "material_id": "MAT_LINOLEUM",
+      "package_size": 1.0,
+      "package_unit": "M2",
+      "display_name": "1 m2 unit",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_PORCELAIN_TILE_1_44M2",
+      "material_id": "MAT_PORCELAIN_TILE",
+      "package_size": 1.44,
+      "package_unit": "M2",
+      "display_name": "1.44 m2 box",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_CERAMIC_TILE_1_2M2",
+      "material_id": "MAT_CERAMIC_TILE",
+      "package_size": 1.2,
+      "package_unit": "M2",
+      "display_name": "1.2 m2 box",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_WALLPAPER_ROLL",
+      "material_id": "MAT_WALLPAPER",
+      "package_size": 5.3,
+      "package_unit": "M2",
+      "display_name": "Wallpaper roll approx. 5.3 m2",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_SKIRTING_2_5M",
+      "material_id": "MAT_SKIRTING",
+      "package_size": 2.5,
+      "package_unit": "M_LINEAR",
+      "display_name": "2.5 m piece",
+      "is_default": true,
+      "is_active": true
+    },
+    {
+      "package_id": "PKG_SELF_LEVELING_25KG",
+      "material_id": "MAT_SELF_LEVELING_MIX",
+      "package_size": 25,
+      "package_unit": "KG",
+      "display_name": "25 kg bag",
+      "is_default": true,
+      "is_active": true
+    }
+  ]
+}

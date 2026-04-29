@@ -1,0 +1,154 @@
+{
+  "artifact_name": "material_norms",
+  "artifact_version": "v1",
+  "prototype_version": "prototype_v0.1",
+  "items": [
+    {
+      "norm_id": "NORM_PRIMER_AREA",
+      "material_id": "MAT_PRIMER",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 0.12,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.1,
+      "unit": "LITER",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_PAINT_WALLS_LAYER",
+      "material_id": "MAT_PAINT_WALLS",
+      "formula_type": "LAYER_BASED",
+      "consumption_norm": 0.15,
+      "default_layer_count": 2,
+      "default_loss_factor": 1.1,
+      "unit": "LITER",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_PAINT_CEILING_LAYER",
+      "material_id": "MAT_PAINT_CEILING",
+      "formula_type": "LAYER_BASED",
+      "consumption_norm": 0.14,
+      "default_layer_count": 2,
+      "default_loss_factor": 1.1,
+      "unit": "LITER",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_PUTTY_1MM",
+      "material_id": "MAT_PUTTY",
+      "formula_type": "THICKNESS_BASED",
+      "q_per_mm": 1.0,
+      "default_loss_factor": 1.1,
+      "unit": "KG",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_PLASTER_1MM",
+      "material_id": "MAT_PLASTER_MIX",
+      "formula_type": "THICKNESS_BASED",
+      "q_per_mm": 1.3,
+      "default_loss_factor": 1.1,
+      "unit": "KG",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_WATERPROOFING_AREA",
+      "material_id": "MAT_WATERPROOFING",
+      "formula_type": "LAYER_BASED",
+      "consumption_norm": 1.2,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.1,
+      "unit": "KG",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_TILE_ADHESIVE_AREA",
+      "material_id": "MAT_TILE_ADHESIVE",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 4.5,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.1,
+      "unit": "KG",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_GROUT_AREA",
+      "material_id": "MAT_GROUT",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 0.35,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.1,
+      "unit": "KG",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_LAMINATE_AREA",
+      "material_id": "MAT_LAMINATE",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 1.0,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.08,
+      "unit": "M2",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_LINOLEUM_AREA",
+      "material_id": "MAT_LINOLEUM",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 1.0,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.07,
+      "unit": "M2",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_PORCELAIN_TILE_AREA",
+      "material_id": "MAT_PORCELAIN_TILE",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 1.0,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.1,
+      "unit": "M2",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_CERAMIC_TILE_AREA",
+      "material_id": "MAT_CERAMIC_TILE",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 1.0,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.1,
+      "unit": "M2",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_WALLPAPER_AREA",
+      "material_id": "MAT_WALLPAPER",
+      "formula_type": "AREA_BASED",
+      "consumption_norm": 1.0,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.1,
+      "unit": "M2",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_SKIRTING_LINEAR",
+      "material_id": "MAT_SKIRTING",
+      "formula_type": "LINEAR_BASED",
+      "consumption_norm": 1.0,
+      "default_layer_count": 1,
+      "default_loss_factor": 1.05,
+      "unit": "M_LINEAR",
+      "is_active": true
+    },
+    {
+      "norm_id": "NORM_SELF_LEVELING_1MM",
+      "material_id": "MAT_SELF_LEVELING_MIX",
+      "formula_type": "THICKNESS_BASED",
+      "q_per_mm": 1.6,
+      "default_loss_factor": 1.1,
+      "unit": "KG",
+      "is_active": true
+    }
+  ]
+}
