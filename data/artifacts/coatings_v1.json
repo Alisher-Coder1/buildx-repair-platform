@@ -1,0 +1,91 @@
+{
+  "artifact_name": "coatings",
+  "artifact_version": "v1",
+  "prototype_version": "prototype_v0.1",
+  "items": [
+    {
+      "coating_id": "COATING_FLOOR_LAMINATE",
+      "surface_type": "FLOOR",
+      "display_name": "Laminate",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_FLOOR_PORCELAIN_TILE",
+      "surface_type": "FLOOR",
+      "display_name": "Porcelain tile",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_FLOOR_LINOLEUM",
+      "surface_type": "FLOOR",
+      "display_name": "Linoleum",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_FLOOR_SELF_LEVELING",
+      "surface_type": "FLOOR",
+      "display_name": "Self-leveling floor",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_WALL_VINYL_WALLPAPER",
+      "surface_type": "WALLS",
+      "display_name": "Vinyl wallpaper",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_WALL_NON_WOVEN_WALLPAPER",
+      "surface_type": "WALLS",
+      "display_name": "Non-woven wallpaper",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_WALL_WATER_BASED_PAINT",
+      "surface_type": "WALLS",
+      "display_name": "Water-based paint",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_WALL_CERAMIC_TILE",
+      "surface_type": "WALLS",
+      "display_name": "Ceramic tile",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_WALL_DECORATIVE_PLASTER",
+      "surface_type": "WALLS",
+      "display_name": "Decorative plaster",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_CEILING_WHITEWASH",
+      "surface_type": "CEILING",
+      "display_name": "Whitewash",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_CEILING_WATER_BASED_PAINT",
+      "surface_type": "CEILING",
+      "display_name": "Water-based ceiling paint",
+      "prototype_enabled": true,
+      "is_active": true
+    },
+    {
+      "coating_id": "COATING_CEILING_STRETCH",
+      "surface_type": "CEILING",
+      "display_name": "Stretch ceiling",
+      "prototype_enabled": true,
+      "is_active": true
+    }
+  ]
+}

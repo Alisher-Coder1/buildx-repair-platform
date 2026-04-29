@@ -1,0 +1,15 @@
+{
+  "artifact_set_id": "BUILDX_ARTIFACTS_PROTO_V01",
+  "artifact_set_version": "v1",
+  "prototype_version": "prototype_v0.1",
+  "status": "DRAFT",
+  "created_at": "2026-04-29",
+  "required_files": [
+    "coatings_v1.json",
+    "materials_v1.json",
+    "packages_v1.json",
+    "operations_v1.json",
+    "material_norms_v1.json",
+    "operation_material_rules_v1.json"
+  ]
+}
