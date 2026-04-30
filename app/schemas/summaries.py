@@ -29,3 +29,30 @@ class ExecutionSummary(BaseModel):
     operations: list[ExecutionOperation]
     generated_at: str
     artifact_version: str
+
+
+class MaterialConsumptionItem(BaseModel):
+    item_id: str
+    room_id: str
+    source_operation_id: str
+    rule_id: str
+    material_id: str
+    material_name: str
+    formula_type: str
+    base_quantity: float
+    calculated_quantity: float
+    unit: str
+    loss_factor: float
+    layer_count: int | None = None
+    thickness_mm: float | None = None
+    package_id: str
+    package_size: float
+    package_count: int
+    warnings: list[str] = []
+
+
+class MaterialConsumptionSummary(BaseModel):
+    room_id: str
+    items: list[MaterialConsumptionItem]
+    calculated_at: str
+    artifact_version: str
