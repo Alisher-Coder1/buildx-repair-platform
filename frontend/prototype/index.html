@@ -36,8 +36,18 @@
         </label>
 
         <label>
-          Название комнаты
-          <input name="room_name" value="Ванная" required />
+          Тип помещения
+          <select name="room_name" id="roomType" required>
+            <option value="Ванная" selected>Ванная</option>
+            <option value="Санузел">Санузел</option>
+            <option value="Кухня">Кухня</option>
+            <option value="Зал">Зал</option>
+            <option value="Спальня">Спальня</option>
+            <option value="Детская">Детская</option>
+            <option value="Коридор">Коридор</option>
+            <option value="Кладовка">Кладовка</option>
+            <option value="Балкон / лоджия">Балкон / лоджия</option>
+          </select>
         </label>
 
         <div class="grid-3">
@@ -59,7 +69,7 @@
 
         <label>
           Зона
-          <select name="zone">
+          <select name="zone" id="zoneSelect">
             <option value="DRY">DRY — сухая зона</option>
             <option value="WET" selected>WET — влажная зона</option>
             <option value="KITCHEN">KITCHEN — кухня</option>
