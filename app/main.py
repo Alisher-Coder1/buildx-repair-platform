@@ -1,19 +1,24 @@
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.api.routes import health, projects, rooms, summaries
+from app.artifacts.exceptions import ArtifactValidationError
 from app.core.config import API_PREFIX, API_TITLE, API_VERSION
 from app.core.errors import ErrorCode
 from app.core.responses import error_item, error_response
 from app.db.base import init_db
 
-app = FastAPI(title=API_TITLE, version=API_VERSION)
 
-
-@app.on_event("startup")
-def on_startup() -> None:
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     init_db()
+    yield
+
+
+app = FastAPI(title=API_TITLE, version=API_VERSION, lifespan=lifespan)
 
 
 @app.exception_handler(RequestValidationError)
@@ -45,6 +50,22 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         )
 
     return JSONResponse(status_code=422, content=error_response(errors))
+
+
+@app.exception_handler(ArtifactValidationError)
+async def artifact_validation_exception_handler(request: Request, exc: ArtifactValidationError):
+    return JSONResponse(
+        status_code=422,
+        content=error_response([
+            error_item(
+                error_code=exc.error_code,
+                message=exc.message,
+                field=exc.field,
+                entity="ArtifactLoader",
+                details=exc.details | {"artifact_file": exc.artifact_file},
+            )
+        ]),
+    )
 
 
 @app.exception_handler(Exception)

@@ -1,4 +1,6 @@
+from app.artifacts.loader import load_artifact_set
 from app.db.models import Room
+from app.domain.execution_engine import build_execution_summary
 from app.domain.geometry import calculate_room_geometry
 
 
@@ -15,3 +17,8 @@ def build_core_summary(room: Room) -> dict:
             "ceiling_covering": room.ceiling_covering,
         },
     }
+
+
+def build_room_execution_summary(room: Room) -> dict:
+    artifact_set = load_artifact_set()
+    return build_execution_summary(room, artifact_set)
