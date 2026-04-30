@@ -5,20 +5,28 @@ const apiStatus = document.querySelector("#apiStatus");
 const statusDot = document.querySelector(".status-dot");
 const form = document.querySelector("#roomForm");
 const button = document.querySelector("#calculateButton");
+
+if (button && form && !button.dataset.submitBridgeAttached) {
+  button.dataset.submitBridgeAttached = "true";
+  button.addEventListener("click", () => {
+    form.dispatchEvent(new Event("submit", { bubbles: true, cancelable: true }));
+  });
+}
+
 const message = document.querySelector("#message");
 const roomTypeSelect = document.querySelector("#roomType");
 const zoneSelect = document.querySelector("#zoneSelect");
 
 const ROOM_TYPE_ZONE_MAP = {
-  "Ванная": "WET",
-  "Санузел": "WET",
-  "Кухня": "KITCHEN",
-  "Зал": "DRY",
-  "Спальня": "DRY",
-  "Детская": "DRY",
-  "Коридор": "DRY",
-  "Кладовка": "DRY",
-  "Балкон / лоджия": "DRY",
+  "\u0412\u0430\u043d\u043d\u0430\u044f": "WET",
+  "\u0421\u0430\u043d\u0443\u0437\u0435\u043b": "WET",
+  "\u041a\u0443\u0445\u043d\u044f": "KITCHEN",
+  "\u0417\u0430\u043b": "DRY",
+  "\u0421\u043f\u0430\u043b\u044c\u043d\u044f": "DRY",
+  "\u0414\u0435\u0442\u0441\u043a\u0430\u044f": "DRY",
+  "\u041a\u043e\u0440\u0438\u0434\u043e\u0440": "DRY",
+  "\u041a\u043b\u0430\u0434\u043e\u0432\u043a\u0430": "DRY",
+  "\u0411\u0430\u043b\u043a\u043e\u043d / \u043b\u043e\u0434\u0436\u0438\u044f": "DRY",
 };
 
 function syncZoneFromRoomType() {
@@ -26,12 +34,17 @@ function syncZoneFromRoomType() {
     return;
   }
 
-  const zone = ROOM_TYPE_ZONE_MAP[roomTypeSelect.value];
+  const selectedOption = roomTypeSelect.options[roomTypeSelect.selectedIndex];
+  const roomTypeValue = roomTypeSelect.value;
+  const roomTypeLabel = selectedOption ? selectedOption.textContent.trim() : "";
+  const zone = ROOM_TYPE_ZONE_MAP[roomTypeValue] || ROOM_TYPE_ZONE_MAP[roomTypeLabel];
 
-  if (zone) {
+  if (zone && zoneSelect.value !== zone) {
     zoneSelect.value = zone;
   }
 }
+
+syncZoneFromRoomType();
 
 const targets = {
   overview: document.querySelector("#resultOverview"),
@@ -487,6 +500,7 @@ form.addEventListener("submit", async (event) => {
     syncZoneFromRoomType();
 
     const formData = new FormData(form);
+    syncZoneFromRoomType();
     const payload = formPayload(formData);
 
     const project = await api("/projects", {
