@@ -187,6 +187,7 @@ def _material_formula_description(formula_type: str) -> str:
 def build_material_item(
     *,
     room_id: str,
+    room_zone: str,
     operation: dict[str, Any],
     rule: dict[str, Any],
     materials_by_id: dict[str, dict[str, Any]],
@@ -237,6 +238,40 @@ def build_material_item(
     q_per_mm = norm.get("q_per_mm")
 
     explanation = {
+        "operation": {
+            "operation_id": operation["operation_id"],
+            "operation_name": operation["operation_name"],
+            "surface_type": operation["surface_type"],
+            "stage": operation["stage"],
+        },
+        "selection_context": {
+            "zone": room_zone,
+            "coating_id": rule["coating_id"],
+            "surface_type": rule["surface_type"],
+        },
+        "calculation": {
+            "formula_type": formula_type,
+            "formula": _material_formula_description(formula_type),
+            "base_quantity": round(base_quantity, 2),
+            "base_unit": operation.get("unit"),
+            "norm_id": norm["norm_id"],
+            "consumption_norm": consumption_norm,
+            "q_per_mm": q_per_mm,
+            "loss_factor": loss_factor,
+            "layer_count": layer_count,
+            "thickness_mm": thickness_mm,
+            "calculated_quantity": round(raw_quantity, 2),
+            "calculated_unit": norm["unit"],
+        },
+        "packaging": {
+            "package_id": package["package_id"],
+            "package_size": package["package_size"],
+            "package_unit": norm["unit"],
+            "package_count": package_count,
+            "rounding_rule": "ceil(calculated_quantity / package_size)",
+        },
+
+        # Backward-compatible flat fields for existing consumers.
         "formula_type": formula_type,
         "formula": _material_formula_description(formula_type),
         "base_quantity": round(base_quantity, 2),
@@ -297,6 +332,7 @@ def build_material_consumption_summary(
             items.append(
                 build_material_item(
                     room_id=room.room_id,
+                    room_zone=room.zone,
                     operation=operation,
                     rule=rule,
                     materials_by_id=materials_by_id,
