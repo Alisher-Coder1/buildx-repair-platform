@@ -56,3 +56,45 @@ class MaterialConsumptionSummary(BaseModel):
     items: list[MaterialConsumptionItem]
     calculated_at: str
     artifact_version: str
+
+
+class CostSummaryItem(BaseModel):
+    cost_item_id: str
+    material_id: str
+    material_name: str
+    package_count: int
+    unit_price: float | None = None
+    currency: str
+    total_price: float | None = None
+    price_status: str
+
+
+class CostSummary(BaseModel):
+    room_id: str
+    items: list[CostSummaryItem]
+    material_total: float | None = None
+    labor_total: float | None = None
+    grand_total: float | None = None
+    currency: str
+
+
+class ProcurementSummaryItem(BaseModel):
+    procurement_item_id: str
+    material_id: str
+    material_name: str
+    required_quantity: float
+    unit: str
+    package_id: str
+    package_size: float
+    package_count: int
+    purchase_quantity: float
+    source_operation_ids: list[str]
+    estimated_total_price: float | None = None
+    price_status: str
+
+
+class ProcurementSummary(BaseModel):
+    room_id: str
+    items: list[ProcurementSummaryItem]
+    estimated_total: float | None = None
+    currency: str
