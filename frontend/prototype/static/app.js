@@ -6,6 +6,32 @@ const statusDot = document.querySelector(".status-dot");
 const form = document.querySelector("#roomForm");
 const button = document.querySelector("#calculateButton");
 const message = document.querySelector("#message");
+const roomTypeSelect = document.querySelector("#roomType");
+const zoneSelect = document.querySelector("#zoneSelect");
+
+const ROOM_TYPE_ZONE_MAP = {
+  "Ванная": "WET",
+  "Санузел": "WET",
+  "Кухня": "KITCHEN",
+  "Зал": "DRY",
+  "Спальня": "DRY",
+  "Детская": "DRY",
+  "Коридор": "DRY",
+  "Кладовка": "DRY",
+  "Балкон / лоджия": "DRY",
+};
+
+function syncZoneFromRoomType() {
+  if (!roomTypeSelect || !zoneSelect) {
+    return;
+  }
+
+  const zone = ROOM_TYPE_ZONE_MAP[roomTypeSelect.value];
+
+  if (zone) {
+    zoneSelect.value = zone;
+  }
+}
 
 const targets = {
   overview: document.querySelector("#resultOverview"),
@@ -445,6 +471,12 @@ async function checkHealth() {
   }
 }
 
+syncZoneFromRoomType();
+
+if (roomTypeSelect) {
+  roomTypeSelect.addEventListener("change", syncZoneFromRoomType);
+}
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
   hideMessage();
@@ -452,6 +484,8 @@ form.addEventListener("submit", async (event) => {
   button.textContent = "Считаем...";
 
   try {
+    syncZoneFromRoomType();
+
     const formData = new FormData(form);
     const payload = formPayload(formData);
 
