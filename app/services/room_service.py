@@ -2,6 +2,7 @@ from sqlalchemy.orm import Session
 
 from app.db.models import Project, Room
 from app.schemas.room import RoomCreate
+from app.domain.room_type_rules import resolve_default_zone_for_room_type
 
 
 def create_room(db: Session, project_id: str, payload: RoomCreate) -> Room | None:
@@ -15,7 +16,7 @@ def create_room(db: Session, project_id: str, payload: RoomCreate) -> Room | Non
         length_m=payload.length_m,
         width_m=payload.width_m,
         height_m=payload.height_m,
-        zone=payload.zone.value,
+        zone=resolve_default_zone_for_room_type(payload.room_name),
         floor_covering=payload.floor_covering,
         wall_covering=payload.wall_covering,
         ceiling_covering=payload.ceiling_covering,

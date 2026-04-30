@@ -63,3 +63,50 @@ def test_create_room_invalid_dimension_returns_error(client):
     assert response.status_code == 422
     body = response.json()
     assert body["success"] is False
+
+
+def test_create_room_derives_zone_from_room_type_even_if_payload_zone_is_wrong(client):
+    project_id = create_project(client)
+
+    response = client.post(
+        f"/api/v1/projects/{project_id}/rooms",
+        json={
+            "room_name": "\u0421\u043f\u0430\u043b\u044c\u043d\u044f",
+            "length_m": 4.0,
+            "width_m": 3.0,
+            "height_m": 2.7,
+            "zone": "WET",
+            "floor_covering": "COATING_FLOOR_PORCELAIN_TILE",
+            "wall_covering": "COATING_WALL_CERAMIC_TILE",
+            "ceiling_covering": "COATING_CEILING_WATER_BASED_PAINT",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["success"] is True
+    assert body["data"]["zone"] == "DRY"
+
+
+def test_create_room_derives_kitchen_zone_from_room_type(client):
+    project_id = create_project(client)
+
+    response = client.post(
+        f"/api/v1/projects/{project_id}/rooms",
+        json={
+            "room_name": "\u041a\u0443\u0445\u043d\u044f",
+            "length_m": 4.0,
+            "width_m": 3.0,
+            "height_m": 2.7,
+            "zone": "DRY",
+            "floor_covering": "COATING_FLOOR_PORCELAIN_TILE",
+            "wall_covering": "COATING_WALL_CERAMIC_TILE",
+            "ceiling_covering": "COATING_CEILING_WATER_BASED_PAINT",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["success"] is True
+    assert body["data"]["zone"] == "KITCHEN"
+
