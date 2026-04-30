@@ -1,12 +1,14 @@
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import FileResponse, JSONResponse
+from fastapi.staticfiles import StaticFiles
 
 from app.api.routes import health, projects, rooms, summaries
 from app.artifacts.exceptions import ArtifactValidationError
-from app.core.config import API_PREFIX, API_TITLE, API_VERSION
+from app.core.config import API_PREFIX, API_TITLE, API_VERSION, BASE_DIR
 from app.core.errors import ErrorCode
 from app.core.responses import error_item, error_response
 from app.db.base import init_db
@@ -19,6 +21,18 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title=API_TITLE, version=API_VERSION, lifespan=lifespan)
+
+PROTOTYPE_DIR = BASE_DIR / "frontend" / "prototype"
+STATIC_DIR = PROTOTYPE_DIR / "static"
+
+if STATIC_DIR.exists():
+    app.mount("/prototype/static", StaticFiles(directory=STATIC_DIR), name="prototype-static")
+
+
+@app.get("/prototype", include_in_schema=False)
+def prototype_frontend():
+    index_path = PROTOTYPE_DIR / "index.html"
+    return FileResponse(index_path)
 
 
 @app.exception_handler(RequestValidationError)

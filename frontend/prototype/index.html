@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Buildx Repair Platform — Prototype Room Flow</title>
+  <link rel="stylesheet" href="/prototype/static/styles.css" />
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Buildx Repair Platform</p>
+        <h1>Prototype Room Flow</h1>
+        <p class="hero-text">
+          Создайте проект и комнату, затем получите расчёт геометрии, работ,
+          материалов, стоимости и закупки из backend API.
+        </p>
+      </div>
+      <div class="status-card">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Backend API</strong>
+          <p id="apiStatus">Проверяем...</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="layout">
+      <form id="roomForm" class="panel form-panel">
+        <h2>Данные комнаты</h2>
+
+        <label>
+          Название проекта
+          <input name="project_name" value="Apartment Renovation" required />
+        </label>
+
+        <label>
+          Название комнаты
+          <input name="room_name" value="Bathroom" required />
+        </label>
+
+        <div class="grid-3">
+          <label>
+            Длина, м
+            <input name="length_m" type="number" step="0.01" min="0.5" value="4.0" required />
+          </label>
+
+          <label>
+            Ширина, м
+            <input name="width_m" type="number" step="0.01" min="0.5" value="3.0" required />
+          </label>
+
+          <label>
+            Высота, м
+            <input name="height_m" type="number" step="0.01" min="0.5" value="2.7" required />
+          </label>
+        </div>
+
+        <label>
+          Зона
+          <select name="zone">
+            <option value="DRY">DRY — сухая зона</option>
+            <option value="WET" selected>WET — влажная зона</option>
+            <option value="KITCHEN">KITCHEN — кухня</option>
+          </select>
+        </label>
+
+        <label>
+          Покрытие пола
+          <select name="floor_covering">
+            <option value="COATING_FLOOR_LAMINATE">Ламинат</option>
+            <option value="COATING_FLOOR_PORCELAIN_TILE" selected>Керамогранит</option>
+            <option value="COATING_FLOOR_LINOLEUM">Линолеум</option>
+            <option value="COATING_FLOOR_SELF_LEVELING">Наливной пол</option>
+          </select>
+        </label>
+
+        <label>
+          Покрытие стен
+          <select name="wall_covering">
+            <option value="COATING_WALL_VINYL_WALLPAPER">Обои виниловые</option>
+            <option value="COATING_WALL_NON_WOVEN_WALLPAPER">Обои флизелиновые</option>
+            <option value="COATING_WALL_WATER_BASED_PAINT">Водоэмульсионная краска</option>
+            <option value="COATING_WALL_CERAMIC_TILE" selected>Керамическая плитка</option>
+            <option value="COATING_WALL_DECORATIVE_PLASTER">Декоративная штукатурка</option>
+          </select>
+        </label>
+
+        <label>
+          Покрытие потолка
+          <select name="ceiling_covering">
+            <option value="COATING_CEILING_WHITEWASH">Побелка</option>
+            <option value="COATING_CEILING_WATER_BASED_PAINT" selected>Водоэмульсионная краска</option>
+            <option value="COATING_CEILING_STRETCH">Натяжной потолок</option>
+          </select>
+        </label>
+
+        <button type="submit" id="calculateButton">Рассчитать комнату</button>
+        <p class="hint">Frontend обращается к backend endpoints и показывает результат.</p>
+      </form>
+
+      <section class="results">
+        <div id="message" class="message hidden"></div>
+
+        <div class="panel">
+          <h2>1. Геометрия</h2>
+          <div id="coreSummary" class="cards"></div>
+        </div>
+
+        <div class="panel">
+          <h2>2. Работы</h2>
+          <div id="executionSummary" class="list"></div>
+        </div>
+
+        <div class="panel">
+          <h2>3. Материалы</h2>
+          <div id="materialSummary" class="table-wrap"></div>
+        </div>
+
+        <div class="panel">
+          <h2>4. Стоимость</h2>
+          <div id="costSummary" class="table-wrap"></div>
+        </div>
+
+        <div class="panel">
+          <h2>5. Закупка</h2>
+          <div id="procurementSummary" class="table-wrap"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/prototype/static/app.js"></script>
+</body>
+</html>
