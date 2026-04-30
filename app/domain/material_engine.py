@@ -172,6 +172,18 @@ def match_material_rules(
     return [rule for priority, rule in candidates if priority == best_priority]
 
 
+def _material_formula_description(formula_type: str) -> str:
+    if formula_type == "AREA_BASED":
+        return "base_quantity * consumption_norm * loss_factor"
+    if formula_type == "LAYER_BASED":
+        return "base_quantity * consumption_norm * layer_count * loss_factor"
+    if formula_type == "THICKNESS_BASED":
+        return "base_quantity * q_per_mm * thickness_mm * loss_factor"
+    if formula_type == "LINEAR_BASED":
+        return "base_quantity * consumption_norm * loss_factor"
+    return "unsupported_formula_type"
+
+
 def build_material_item(
     *,
     room_id: str,
@@ -218,6 +230,31 @@ def build_material_item(
     )
     package_count = calculate_package_count(raw_quantity, package["package_size"])
 
+    loss_factor = rule.get("loss_factor") or norm.get("default_loss_factor")
+    layer_count = rule.get("layer_count") or norm.get("default_layer_count")
+    thickness_mm = rule.get("thickness_mm")
+    consumption_norm = norm.get("consumption_norm")
+    q_per_mm = norm.get("q_per_mm")
+
+    explanation = {
+        "formula_type": formula_type,
+        "formula": _material_formula_description(formula_type),
+        "base_quantity": round(base_quantity, 2),
+        "base_unit": operation.get("unit"),
+        "norm_id": norm["norm_id"],
+        "consumption_norm": consumption_norm,
+        "q_per_mm": q_per_mm,
+        "loss_factor": loss_factor,
+        "layer_count": layer_count,
+        "thickness_mm": thickness_mm,
+        "calculated_quantity": round(raw_quantity, 2),
+        "calculated_unit": norm["unit"],
+        "package_size": package["package_size"],
+        "package_unit": norm["unit"],
+        "package_count": package_count,
+        "rounding_rule": "ceil(calculated_quantity / package_size)",
+    }
+
     return {
         "item_id": f"{operation['operation_id']}:{rule['rule_id']}:{material['material_id']}",
         "room_id": room_id,
@@ -229,18 +266,23 @@ def build_material_item(
         "base_quantity": round(base_quantity, 2),
         "calculated_quantity": round(raw_quantity, 2),
         "unit": norm["unit"],
-        "loss_factor": rule.get("loss_factor") or norm.get("default_loss_factor"),
-        "layer_count": rule.get("layer_count") or norm.get("default_layer_count"),
-        "thickness_mm": rule.get("thickness_mm"),
+        "loss_factor": loss_factor,
+        "layer_count": layer_count,
+        "thickness_mm": thickness_mm,
         "package_id": package["package_id"],
         "package_size": package["package_size"],
         "package_count": package_count,
+        "explanation": explanation,
         "warnings": [],
     }
 
 
-def build_material_consumption_summary(room, artifact_set: dict[str, dict[str, Any]]) -> dict[str, Any]:
-    materials_by_id = _index_by(artifact_set["materials_v1.json"]["items"], "material_id")
+def build_material_consumption_summary(
+    room, artifact_set: dict[str, dict[str, Any]]
+) -> dict[str, Any]:
+    materials_by_id = _index_by(
+        artifact_set["materials_v1.json"]["items"], "material_id"
+    )
     norms_by_id = _index_by(artifact_set["material_norms_v1.json"]["items"], "norm_id")
     packages_by_id = _index_by(artifact_set["packages_v1.json"]["items"], "package_id")
     rules = artifact_set["operation_material_rules_v1.json"]["items"]
@@ -248,7 +290,9 @@ def build_material_consumption_summary(room, artifact_set: dict[str, dict[str, A
 
     items: list[dict[str, Any]] = []
     for operation in operations:
-        matched_rules = match_material_rules(operation=operation, room=room, rules=rules)
+        matched_rules = match_material_rules(
+            operation=operation, room=room, rules=rules
+        )
         for rule in matched_rules:
             items.append(
                 build_material_item(

@@ -29,7 +29,8 @@ def test_floor_tile_package_count():
     summary = build_material_consumption_summary(WetTileRoom(), load_artifact_set())
 
     floor_tile = next(
-        item for item in summary["items"]
+        item
+        for item in summary["items"]
         if item["source_operation_id"] == "OPR_FLOOR_TILE_INSTALL"
         and item["material_id"] == "MAT_PORCELAIN_TILE"
     )
@@ -42,7 +43,8 @@ def test_floor_tile_adhesive_package_count():
     summary = build_material_consumption_summary(WetTileRoom(), load_artifact_set())
 
     adhesive = next(
-        item for item in summary["items"]
+        item
+        for item in summary["items"]
         if item["source_operation_id"] == "OPR_FLOOR_TILE_INSTALL"
         and item["material_id"] == "MAT_TILE_ADHESIVE"
     )
@@ -55,10 +57,35 @@ def test_wall_waterproofing_package_count():
     summary = build_material_consumption_summary(WetTileRoom(), load_artifact_set())
 
     waterproofing = next(
-        item for item in summary["items"]
+        item
+        for item in summary["items"]
         if item["source_operation_id"] == "OPR_WALL_WATERPROOFING"
         and item["material_id"] == "MAT_WATERPROOFING"
     )
 
     assert waterproofing["calculated_quantity"] == 49.9
     assert waterproofing["package_count"] == 3
+
+
+def test_material_items_include_consumption_explanation():
+    summary = build_material_consumption_summary(WetTileRoom(), load_artifact_set())
+
+    floor_tile = next(
+        item
+        for item in summary["items"]
+        if item["source_operation_id"] == "OPR_FLOOR_TILE_INSTALL"
+        and item["material_id"] == "MAT_PORCELAIN_TILE"
+    )
+
+    explanation = floor_tile["explanation"]
+
+    assert explanation["formula_type"] == floor_tile["formula_type"]
+    assert explanation["base_quantity"] == floor_tile["base_quantity"]
+    assert explanation["calculated_quantity"] == floor_tile["calculated_quantity"]
+    assert explanation["package_size"] == floor_tile["package_size"]
+    assert explanation["package_count"] == floor_tile["package_count"]
+    assert explanation["loss_factor"] == floor_tile["loss_factor"]
+
+    assert explanation["norm_id"]
+    assert explanation["formula"] == "base_quantity * consumption_norm * loss_factor"
+    assert explanation["rounding_rule"] == "ceil(calculated_quantity / package_size)"
