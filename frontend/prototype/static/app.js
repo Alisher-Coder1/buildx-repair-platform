@@ -1,4 +1,5 @@
 const API_BASE = "/api/v1";
+const PRICE_STORAGE_KEY = "buildx.prototype.materialPrices.v0.1";
 
 const apiStatus = document.querySelector("#apiStatus");
 const statusDot = document.querySelector(".status-dot");
@@ -14,6 +15,11 @@ const targets = {
   cost: document.querySelector("#costSummary"),
   procurement: document.querySelector("#procurementSummary"),
 };
+
+let lastCostBody = null;
+let lastProcurementData = null;
+let lastExecutionData = null;
+let lastMaterialData = null;
 
 const dictionaries = {
   stage: {
@@ -65,6 +71,7 @@ const dictionaries = {
   },
   priceStatus: {
     MISSING_PRICE: "Цена не указана",
+    PRICE_ENTERED: "Цена введена",
   },
 };
 
@@ -128,6 +135,53 @@ function asNumber(value) {
   return Number.parseFloat(value);
 }
 
+function money(value) {
+  if (value === null || value === undefined || Number.isNaN(value)) {
+    return "—";
+  }
+
+  return new Intl.NumberFormat("ru-RU", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+}
+
+function loadPrices() {
+  try {
+    return JSON.parse(localStorage.getItem(PRICE_STORAGE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+
+function savePrices(prices) {
+  localStorage.setItem(PRICE_STORAGE_KEY, JSON.stringify(prices));
+}
+
+function getPrice(materialId) {
+  const prices = loadPrices();
+  const raw = prices[materialId];
+
+  if (raw === undefined || raw === null || raw === "") {
+    return null;
+  }
+
+  const parsed = Number(raw);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+function setPrice(materialId, value) {
+  const prices = loadPrices();
+
+  if (value === "" || value === null || value === undefined || Number(value) <= 0) {
+    delete prices[materialId];
+  } else {
+    prices[materialId] = Number(value);
+  }
+
+  savePrices(prices);
+}
+
 function formPayload(formData) {
   return {
     project_name: formData.get("project_name"),
@@ -142,11 +196,34 @@ function formPayload(formData) {
   };
 }
 
-function renderOverview({ execution, materials, cost, procurement }) {
+function calculateCostRows(costItems) {
+  return costItems.map((item) => {
+    const unitPrice = getPrice(item.material_id);
+    const totalPrice = unitPrice === null ? null : unitPrice * item.package_count;
+
+    return {
+      ...item,
+      unit_price: unitPrice,
+      total_price: totalPrice,
+      price_status: unitPrice === null ? "MISSING_PRICE" : "PRICE_ENTERED",
+    };
+  });
+}
+
+function calculateCostTotal(rows) {
+  return rows.reduce((sum, item) => sum + (item.total_price || 0), 0);
+}
+
+function countMissingPrices(rows) {
+  return rows.filter((item) => item.price_status === "MISSING_PRICE").length;
+}
+
+function renderOverview({ execution, materials, costRows, procurement }) {
   const operationCount = execution.data.operations.length;
   const materialRows = materials.data.items.length;
   const packageCount = procurement.data.items.reduce((sum, item) => sum + item.package_count, 0);
-  const missingPrices = cost.data.items.filter((item) => item.price_status === "MISSING_PRICE").length;
+  const missingPrices = countMissingPrices(costRows);
+  const total = calculateCostTotal(costRows);
 
   targets.overview.innerHTML = `
     <div class="overview-card">
@@ -161,9 +238,13 @@ function renderOverview({ execution, materials, cost, procurement }) {
       <strong>${packageCount}</strong>
       <span>упаковок к закупке</span>
     </div>
-    <div class="overview-card warning">
+    <div class="overview-card ${missingPrices > 0 ? "warning" : "success"}">
       <strong>${missingPrices}</strong>
       <span>цен нужно заполнить</span>
+    </div>
+    <div class="overview-card total-card">
+      <strong>${money(total)}</strong>
+      <span>предварительная сумма</span>
     </div>
   `;
 }
@@ -210,31 +291,108 @@ function renderMaterials(data) {
 }
 
 function renderCost(body) {
-  const warning = body.warnings?.[0]
+  lastCostBody = body;
+
+  const costRows = calculateCostRows(body.data.items);
+  const missingPrices = countMissingPrices(costRows);
+  const total = calculateCostTotal(costRows);
+
+  const priceInfo = missingPrices > 0
     ? `
       <div class="explain-warning">
-        <span class="warning-pill">${body.warnings[0].error_code}</span>
+        <span class="warning-pill">MISSING_PRICE</span>
         <p>
-          Цены пока не заполнены. Это не ошибка расчёта: backend уже посчитал материалы
-          и упаковки, а стоимость появится после добавления прайс-листа.
+          Введите цену за упаковку в таблице ниже. После ввода frontend сразу
+          пересчитает стоимость материалов, общий итог и статус закупки.
         </p>
       </div>
     `
-    : "";
+    : `
+      <div class="explain-success">
+        <span class="success-pill">PRICE_CALCULATED</span>
+        <p>
+          Все цены заполнены. Предварительная стоимость рассчитана на основе
+          количества упаковок и введённых цен.
+        </p>
+      </div>
+    `;
 
   targets.cost.innerHTML = `
-    ${warning}
+    ${priceInfo}
+    <div class="cost-total-card">
+      <span>Предварительная сумма материалов</span>
+      <strong id="costTotal">${money(total)}</strong>
+    </div>
     ${table(
-      ["Материал", "Упаковок", "Цена", "Итого", "Статус"],
-      body.data.items.map((item) => [
+      ["Материал", "Упаковок", "Цена за упаковку", "Итого", "Статус"],
+      costRows.map((item) => [
         label("material", item.material_name),
         item.package_count,
-        item.unit_price ?? "—",
-        item.total_price ?? "—",
-        label("priceStatus", item.price_status),
+        priceInput(item.material_id, item.unit_price),
+        `<span data-price-total="${item.material_id}">${money(item.total_price)}</span>`,
+        `<span data-price-status="${item.material_id}">${label("priceStatus", item.price_status)}</span>`,
       ])
     )}
   `;
+
+  wirePriceInputs();
+}
+
+function priceInput(materialId, value) {
+  return `
+    <input
+      class="price-input"
+      type="number"
+      min="0"
+      step="0.01"
+      data-material-id="${materialId}"
+      value="${value ?? ""}"
+      placeholder="0.00"
+      aria-label="Цена за упаковку"
+    />
+  `;
+}
+
+function wirePriceInputs() {
+  document.querySelectorAll(".price-input").forEach((input) => {
+    input.addEventListener("input", () => {
+      setPrice(input.dataset.materialId, input.value);
+      updatePriceDerivedViews();
+    });
+  });
+}
+
+function updatePriceDerivedViews() {
+  if (!lastCostBody || !lastExecutionData || !lastMaterialData || !lastProcurementData) {
+    return;
+  }
+
+  const costRows = calculateCostRows(lastCostBody.data.items);
+  const total = calculateCostTotal(costRows);
+
+  document.querySelector("#costTotal").textContent = money(total);
+
+  costRows.forEach((item) => {
+    const totalCell = document.querySelector(`[data-price-total="${item.material_id}"]`);
+    const statusCell = document.querySelector(`[data-price-status="${item.material_id}"]`);
+
+    if (totalCell) {
+      totalCell.textContent = money(item.total_price);
+    }
+
+    if (statusCell) {
+      statusCell.textContent = label("priceStatus", item.price_status);
+    }
+  });
+
+  renderOverview({
+    execution: lastExecutionData,
+    materials: lastMaterialData,
+    costRows,
+    procurement: lastProcurementData,
+  });
+
+  renderProcurement(lastProcurementData.data);
 }
 
 function renderProcurement(data) {
@@ -246,9 +404,15 @@ function renderProcurement(data) {
       label("unit", item.unit),
       item.package_count,
       item.purchase_quantity,
-      label("priceStatus", item.price_status),
+      priceStatusForMaterial(item.material_id),
     ])
   );
+}
+
+function priceStatusForMaterial(materialId) {
+  return getPrice(materialId) === null
+    ? "Нет цены"
+    : "Цена учтена";
 }
 
 function table(headers, rows) {
@@ -322,14 +486,20 @@ form.addEventListener("submit", async (event) => {
       api(`/rooms/${roomId}/procurement-summary`),
     ]);
 
-    renderOverview({ execution, materials, cost, procurement });
+    lastExecutionData = execution;
+    lastMaterialData = materials;
+    lastProcurementData = procurement;
+
+    const costRows = calculateCostRows(cost.data.items);
+
+    renderOverview({ execution, materials, costRows, procurement });
     renderCore(core.data);
     renderExecution(execution.data);
     renderMaterials(materials.data);
     renderCost(cost);
     renderProcurement(procurement.data);
 
-    showMessage("Расчёт успешно выполнен. Данные получены из backend API.");
+    showMessage("Расчёт успешно выполнен. Теперь можно ввести цены за упаковку и получить итог стоимости.");
   } catch (error) {
     showMessage(humanError(error), "error");
   } finally {
